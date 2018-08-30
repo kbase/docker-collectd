@@ -24,8 +24,8 @@ COPY 50docker-apt-conf /etc/apt/apt.conf.d/
 
 RUN apt-get update \
     && apt-get upgrade \
-    && apt-get install -y --allow-unauthenticated collectd-core collectd-utils libpython2.7 python-minimal python-pip python-setuptools python-docker \
-    && pip install collectd \
+    && apt-get install -y --allow-unauthenticated collectd-core collectd-utils libpython2.7 python-minimal python-pip python-setuptools \
+    && pip install collectd docker \
     && apt-get remove python-setuptools python-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*

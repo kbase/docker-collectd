@@ -52,7 +52,7 @@ Interval 30
 ##############################################################################
 
 LoadPlugin logfile
-LoadPlugin syslog
+#LoadPlugin syslog
 
 <Plugin logfile>
 	LogLevel "info"
@@ -61,9 +61,9 @@ LoadPlugin syslog
 	PrintSeverity false
 </Plugin>
 
-<Plugin syslog>
-	LogLevel info
-</Plugin>
+#<Plugin syslog>
+#	LogLevel info
+#</Plugin>
 
 ##############################################################################
 # LoadPlugin section                                                         #
@@ -150,7 +150,7 @@ LoadPlugin memory
 #LoadPlugin serial
 #LoadPlugin snmp
 #LoadPlugin statsd
-#LoadPlugin swap
+LoadPlugin swap
 #LoadPlugin table
 #LoadPlugin tail
 #LoadPlugin tail_csv
@@ -619,7 +619,7 @@ LoadPlugin tcpconns
 
 <Plugin network>
 #	# client setup:
-	Server "140.221.43.199" "25826"
+	Server "{{ default .Env.logstash_server "140.221.43.199"}}" "{{ default .Env.logstash_collectd "25826" }}"
 #	<Server "239.192.74.66" "25826">
 #		SecurityLevel Encrypt
 #		Username "user"
@@ -930,10 +930,10 @@ LoadPlugin tcpconns
 #	TimerPercentile 90.0
 #</Plugin>
 
-#<Plugin swap>
-#	ReportByDevice false
-#	ReportBytes true
-#</Plugin>
+<Plugin swap>
+	ReportByDevice false
+	ReportBytes true
+</Plugin>
 
 #<Plugin table>
 #	<Table "/proc/slabinfo">

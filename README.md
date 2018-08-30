@@ -6,9 +6,11 @@ This image expects that /proc and /sys from the host environment be mounted (rea
 /rootfs/proc and /rootfs/sys substituted by a preloaded library module, allowing collected to read stats from the
 parent environment.
 
+In addition, this repo contains the docker_stats collectd python plugin from https://github.com/ajtritt/xswap_jgi and needs access to a docker socket to poll statistics.
+
 Run with:
 ~~~
-docker run -v /proc:/rootfs/proc:ro -v /sys:/rootfs/sys:ro kbase/docker-collectd:latest 
+docker run -v /proc:/rootfs/proc:ro -v /sys:/rootfs/sys:ro -v /var/run/docker.sock:/var/run/docker.sock  kbase/docker-collectd:latest 
 ~~~
 Original configuration from https://github.com/collectd/collectd/tree/master/contrib/docker
 

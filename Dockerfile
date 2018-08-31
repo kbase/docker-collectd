@@ -10,7 +10,7 @@ RUN apt-get update \
  && apt-get install -y collectd-core collectd-utils build-essential git \
  && make -C /usr/src/rootfs_prefix \
  && cd /tmp \
- && git clone https://github.com/ajtritt/xswap_jgi
+ && git clone https://github.com/sychan/xswap_jgi
 
 FROM kbase/kb_minideb:stretch
 

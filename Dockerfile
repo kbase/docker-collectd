@@ -12,6 +12,8 @@ RUN apt-get update \
  && cd /tmp \
  && git clone https://github.com/sychan/xswap_jgi
 
+FROM kbase/docker-collectd:latest as collectd
+
 FROM kbase/kb_minideb:stretch
 
 ARG BUILD_DATE
@@ -35,6 +37,8 @@ COPY collectd.conf /etc/collectd/collectd.conf
 COPY collectd.conf.d /etc/collectd/collectd.conf.d
 COPY --from=build /usr/src/rootfs_prefix/rootfs_prefix.so /usr/src/rootfs_prefix/rootfs_prefix.so
 COPY --from=build /tmp/xswap_jgi/kbase/collectd /root/collectd
+# Update the types.db to match the collectd we're using
+COPY --from=collectd /usr/share/collectd/types.db /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-codec-collectd-3.0.8/vendor/types.db
 COPY deployment/ /kb/deployment/
 
 ENV LD_PRELOAD /usr/src/rootfs_prefix/rootfs_prefix.so

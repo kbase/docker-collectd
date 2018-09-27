@@ -10,7 +10,7 @@ In addition, this repo contains the docker_stats collectd python plugin from htt
 
 Run with:
 ~~~
-docker run -v /proc:/rootfs/proc:ro -v /sys:/rootfs/sys:ro -v /var/run/docker.sock:/var/run/docker.sock  kbase/docker-collectd:latest 
+docker run -d -v /proc:/rootfs/proc:ro -v /sys:/rootfs/sys:ro -v /var/run/docker.sock:/var/run/docker.sock --hostname `hostname` kbase/docker-collectd:latest 
 ~~~
 Original configuration from https://github.com/collectd/collectd/tree/master/contrib/docker
 

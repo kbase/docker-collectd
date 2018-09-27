@@ -140,7 +140,7 @@ LoadPlugin memory
 #LoadPlugin processes
 #LoadPlugin protocols
 <LoadPlugin python>
-	Interval 300
+	Interval {{ default .Env.python_interval "300" }}
 	FlushInterval 300
 	# Globals true
 </LoadPlugin>

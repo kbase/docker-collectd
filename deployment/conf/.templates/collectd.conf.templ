@@ -178,23 +178,23 @@ LoadPlugin tcpconns
 # ription of those options is available in the collectd.conf(5) manual page. #
 ##############################################################################
 
-#<Plugin "aggregation">
-#	<Aggregation>
+<Plugin "aggregation">
+	<Aggregation>
 #		#Host "unspecified"
-#		Plugin "cpu"
+		Plugin "cpu"
 #		PluginInstance "/[0,2,4,6,8]$/"
-#		Type "cpu"
+		Type "cpu"
 #		#TypeInstance "unspecified"
 #
 #		SetPlugin "cpu"
 #		SetPluginInstance "even-%{aggregation}"
 #
-#		GroupBy "Host"
-#		GroupBy "TypeInstance"
+		GroupBy "Host"
+		GroupBy "TypeInstance"
 #
 #		CalculateNum false
-#		CalculateSum false
-#		CalculateAverage true
+		CalculateSum true
+		CalculateAverage true
 #		CalculateMinimum false
 #		CalculateMaximum false
 #		CalculateStddev false
@@ -273,6 +273,10 @@ LoadPlugin tcpconns
 #	CGroup "libvirt"
 #	IgnoreSelected false
 #</Plugin>
+
+<Plugin "cpu">
+	ValuesPercentage true
+</Plugin>
 
 #<Plugin csv>
 #	DataDir "/var/lib/collectd/csv"

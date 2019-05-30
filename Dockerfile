@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 COPY rootfs_prefix/ /usr/src/rootfs_prefix/
 
 RUN apt-get update \
- && apt-get upgrade \
+ && apt-get upgrade -y \
  && apt-get install -y collectd-core collectd-utils build-essential git \
  && make -C /usr/src/rootfs_prefix \
  && cd /tmp \
